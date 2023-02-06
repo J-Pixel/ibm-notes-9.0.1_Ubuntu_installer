@@ -22,7 +22,6 @@
 # Package dependencies
 DEPENDENCIES=\
 (																																			    \
-	"gdebi" 																															  	\
 	"libjpeg62"																												 		  	\
 	"libgconf-2-4" 																												  	\
 	"libatk-adaptor:i386" 																								  	\
@@ -80,7 +79,7 @@ tmp_install_directory="$(mktemp -d)"
 
 if ! apt-get -qq install libgnome-desktop-2-17; then
 	wget http://security.ubuntu.com/ubuntu/pool/universe/g/gnome-desktop/libgnome-desktop-2-17_2.32.1-2ubuntu1_amd64.deb -P "$tmp_install_directory"/
-	gdebi "$tmp_install_directory"/libgnome-desktop-2-17_2.32.1-2ubuntu1_amd64.deb
+	dpkg-i "$tmp_install_directory"/libgnome-desktop-2-17_2.32.1-2ubuntu1_amd64.deb
 
 	if apt-get -qq install libgnome-desktop-2-17; then
 		echo "libgnome-desktop-2-17 : successfully installed"
@@ -93,7 +92,7 @@ fi
 
 if ! apt-get -qq install libxp6; then
 	wget http://launchpadlibrarian.net/183708483/libxp6_1.0.2-2_amd64.deb -P "$tmp_install_directory"/
-	gdebi "$tmp_install_directory"/libxp6_1.0.2-2_amd64.deb
+	dpkg-i "$tmp_install_directory"/libxp6_1.0.2-2_amd64.deb
 
 	if apt-get -qq install libxp6; then
 		echo "libxp6 : successfully installed"
@@ -130,7 +129,7 @@ echo "Installing IBM notes 9.0.1"
 # Give user time to read echo
 sleep 5
 
-gdebi $1
+dpkg -i $1
 
 cd ../
 
